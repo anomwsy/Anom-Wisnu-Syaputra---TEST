@@ -1,0 +1,16 @@
+﻿@model WareHouseUpsertViewModel;
+@{
+    ViewData["Title"] = "WareHouse Page";
+}
+<main>
+    <div class="title-page">
+        @(Model.Id == null ? "Insert" : "Update")
+    </div>
+    <div style="margin-top:20px">
+        <form class="upsert" asp-action="Upsert" method="post">
+            <input asp-for="Id" hidden />
+            <input asp-for="Name" placeholder="Insert Name" required />
+            <button class="action-button edit" type="submit">Save</button>
+        </form>
+    </div>
+</main>

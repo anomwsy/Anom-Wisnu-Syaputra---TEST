@@ -1,0 +1,86 @@
+﻿@model ProductIndexViewModel;
+@{
+    ViewData["Title"] = "Product";
+}
+<main>
+    <div class="title-page">
+        Products
+    </div>
+    <div class="filtering">
+        <form asp-action="Index" method="get">
+            <input asp-for="Name"/>
+            <select asp-for="WareHouseId" asp-items="@Model.WareHouses">
+                <option value="">All</option>
+            </select>
+            <select asp-for="IsExpired">
+                <option value="">All</option>
+                <option value="true">Expired</option>
+                <option value="false">Not Expired</option>
+            </select>
+            <button class="action-button" type="submit">Search</button>
+        </form>
+    </div>
+    <div style="margin-top: 20px;">
+        <a class="action-button edit" asp-action="Upsert">Add Product</a>
+    </div>
+    <div>
+        <table class="table-data">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Product Name</th>
+                    <th>Warehouse Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>IsExpired</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (@Model.Products.Count() > 0)
+                {
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
+                            <td style="display:flex; gap: 5px">
+                                <a class="action-button edit" asp-action="Upsert" asp-route-id="@product.Id">EDIT</a>
+                                <form asp-action="Delete" method="post">
+                                    <input name="Id" value="@product.Id" hidden />
+                                    <button class="action-button delete">DELETE</button>
+                                </form>
+                            </td>
+                            <td>@product.Name</td>
+                            <td>@product.WareHouse</td>
+                            <td>@product.Price</td>
+                            <td>@product.Quantity</td>
+                            <td>@product.IsExpired</td>
+
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" style="text-align: center">
+                            WareHouse Not Found
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        @if (@Model.Products.Count() > 0)
+                        {
+                            @for (int i = 0; i < Model.totalPage; i++)
+                            {
+                                <div class="pagination">
+                                    <a asp-action="Index" asp-route-name="@Model.Name" asp-route-page="@i+1" class="page-button">@(i + 1)</a>
+                                </div>
+                            }
+                        }
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</main>

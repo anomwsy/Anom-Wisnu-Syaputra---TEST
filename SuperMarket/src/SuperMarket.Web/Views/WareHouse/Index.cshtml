@@ -1,0 +1,71 @@
+﻿@model WareHouseIndexViewModel;
+@{
+    ViewData["Title"] = "WareHouse Page";
+}
+<main>
+    <div class="title-page">
+        WareHouses
+    </div>
+    <div class="filtering">
+        <form asp-action="Index" method="get">
+            <input asp-for="name" />
+            <button class="action-button" type="submit">Search</button>
+        </form>
+    </div>
+    <div style="margin-top: 20px;">
+         <a class="action-button edit" asp-action="Upsert">Add WareHouse</a>
+    </div>
+    <div>
+        <table class="table-data">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Ware House Name</th>
+                    <th>Total Product</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (@Model.WareHouses.Count() > 0)
+                {
+                    @foreach (var warehouse in Model.WareHouses)
+                    {
+                        <tr>
+                            <td style="display:flex; gap: 5px">
+                                <a class="action-button edit" asp-action="Upsert" asp-route-id="@warehouse.Id">EDIT</a>
+                                <form asp-action="Delete" method="post">
+                                    <input name="Id" value="@warehouse.Id" hidden/>
+                                    <button class="action-button delete">DELETE</button>
+                                </form>
+                            </td>
+                            <td>@warehouse.Name</td>
+                            <td>@warehouse.totalProduct</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" style="text-align: center">
+                            WareHouse Not Found
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        @if (@Model.WareHouses.Count() > 0)
+                        {
+                            @for (int i = 0; i < Model.totalPage; i++)
+                            {
+                                <div class="pagination">
+                                    <a asp-action="Index" asp-route-name="@Model.name" asp-route-page="@i+1" class="page-button">@(i+1)</a>
+                                </div>
+                            }
+                        }
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</main>

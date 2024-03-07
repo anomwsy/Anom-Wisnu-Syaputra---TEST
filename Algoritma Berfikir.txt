@@ -1,0 +1,7 @@
+Solusi cara menanggulangi dan mengantisipasi dalam pengecekan 
+barang yang kadaluarsa:
+
+- membuat sistem pencatatan barang pada database sedetail mungkin.
+- membuat kolom tanggal kadaluarsa pada tabel barang sehingga pengambilan data barang yang kadaluarsa menjadi lebih mudah.
+- membuat query untuk mengidentifikasi produk yang sudah kadaluwarsa berdasarkan tanggal kedaluwarsa dalam tabel sehingga pengecekan secara berkala menjadi lebih mudah.
+- membuat sistem dengan User Interface yang mudah dipahami sehingga setiap pegawai mudah mengoperasikan sistem tersebut untuk memonitoring barang yang kadaluarsa

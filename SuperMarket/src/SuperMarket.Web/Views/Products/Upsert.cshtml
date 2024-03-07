@@ -1,0 +1,23 @@
+﻿@model ProductUpserViewModel;
+@{
+    ViewData["Title"] = "Product";
+}
+<main>
+    <div class="title-page">
+        @(Model.Id == null ? "Insert" : "Update")
+    </div>
+    <div style="margin-top:20px">
+        <form class="upsert" asp-action="Upsert" method="post">
+            <input asp-for="Id" hidden />
+            <input asp-for="Name" placeholder="Insert Name" required />
+            <input asp-for="Price" placeholder="Insert Price" required />
+            <input asp-for="Quantity" placeholder="Insert Quantity" required />
+            @if (Model.Id == null)
+            {
+                <input asp-for="ExpiredDate" placeholder="Expired Date" required />
+            }
+            <select asp-for="WareHouseId" asp-items="Model.WareHouses" required></select>
+            <button class="action-button edit" type="submit">Save</button>
+        </form>
+    </div>
+</main>

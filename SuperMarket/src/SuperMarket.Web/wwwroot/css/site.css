@@ -1,0 +1,94 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.title-page {
+    font-weight: bold;
+    font-size: 30px
+}
+
+.table-data {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    outline: 1px solid black;
+}
+
+form.upsert{
+    display:flex;
+    flex-direction: column;
+}
+
+.table-data thead th:first-child {
+    width:200px;
+}
+
+    .table-data thead th,
+    .table-data tbody td {
+        border: 1px solid black;
+        padding: 10px
+    }
+
+    .table-data tfoot td {
+        border: 1px solid black;
+        padding: 5px 10px
+    }
+
+
+.action-button{
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;    
+}
+
+.page-button {
+    padding: 3px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.edit{
+    background-color: yellow;
+}
+
+.delete{
+    background-color: red;
+    color: white;
+}
+.edit:hover {
+    background-color: rgb(255, 208, 0);
+}
+.delete:hover {
+    background-color: rgb(171, 0, 0);
+    color: white;
+}
+.page-button:hover {
+    color: black;
+}
+
+
